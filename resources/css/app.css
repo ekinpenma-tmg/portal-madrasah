@@ -1,0 +1,798 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   CSS CUSTOM — dipindah dari <style> di admin.blade.php
+   dan app.blade.php (publik)
+   ============================================================ */
+
+@layer base {
+    [x-cloak] {
+        display: none !important;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    ::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 4px;
+    }
+}
+
+/* ── ADMIN ──────────────────────────────────────────────────── */
+
+.nav-group-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #71717a;
+    padding: 10px 10px 3px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #71717a;
+    text-decoration: none;
+    transition: all .12s ease;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #e4e4e7;
+}
+
+.nav-item .nav-icon {
+    transition: transform .15s ease, color .15s ease;
+}
+
+.nav-item:hover .nav-icon {
+    transform: translateX(1px) scale(1.05);
+}
+
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.nav-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: transparent;
+    flex-shrink: 0;
+    transition: .15s;
+}
+
+.nav-item.active .nav-dot {
+    background: #22c55e;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+    animation: navDotPulse 2s ease-out infinite;
+}
+
+@keyframes navDotPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.45); }
+    70%  { box-shadow: 0 0 0 4px rgba(34, 197, 94, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.nav-item.active svg {
+    color: #22c55e;
+}
+
+.topbar-divider {
+    width: 0.5px;
+    height: 16px;
+    background: #e5e5e5;
+}
+
+/* Tombol kecil */
+.btn-xs {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid;
+    transition: all .12s;
+    white-space: nowrap;
+}
+
+.btn-primary-xs {
+    background: #15803d;
+    color: #fff;
+    border-color: #15803d;
+}
+
+.btn-primary-xs:hover {
+    background: #166534;
+}
+
+.btn-ghost-xs {
+    background: transparent;
+    color: #555;
+    border-color: #ddd;
+}
+
+.btn-ghost-xs:hover {
+    background: #f4f4f4;
+    color: #111;
+}
+
+.btn-danger-xs {
+    background: transparent;
+    color: #dc2626;
+    border-color: #fca5a5;
+}
+
+.btn-danger-xs:hover {
+    background: #fef2f2;
+}
+
+/* Badge */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+.badge-green {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.badge-yellow {
+    background: #fef9c3;
+    color: #854d0e;
+}
+
+.badge-red {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.badge-blue {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.badge-gray {
+    background: #f4f4f5;
+    color: #52525b;
+}
+
+.badge-purple {
+    background: #ede9fe;
+    color: #6d28d9;
+}
+
+/* Icon action button */
+.btn-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 5px;
+    border: 1px solid #e8e8e8;
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #aaa;
+    transition: all .15s ease;
+}
+
+.btn-icon:hover {
+    background: #f4f4f5;
+    color: #333;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.btn-icon.danger:hover {
+    background: #fee2e2;
+    color: #dc2626;
+    border-color: #fca5a5;
+}
+
+.btn-icon.success:hover {
+    background: #dcfce7;
+    color: #16a34a;
+    border-color: #bbf7d0;
+}
+
+.btn-icon.warning:hover {
+    background: #fef9c3;
+    color: #d97706;
+    border-color: #fde68a;
+}
+
+.btn-icon.blue:hover {
+    background: #dbeafe;
+    color: #1d4ed8;
+    border-color: #bfdbfe;
+}
+
+/* Stat card */
+.stat-card {
+    background: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+    padding: 14px 16px 14px 14px;
+    border-left: 3px solid #16a34a;
+}
+
+.stat-card.amber {
+    border-left-color: #d97706;
+}
+
+.stat-card.red {
+    border-left-color: #dc2626;
+}
+
+.stat-card.blue {
+    border-left-color: #2563eb;
+}
+
+.stat-card.purple {
+    border-left-color: #7c3aed;
+}
+
+.stat-card .stat-label {
+    font-size: 11px;
+    color: #999;
+    margin-bottom: 4px;
+}
+
+.stat-card .stat-value {
+    font-size: 24px;
+    font-weight: 600;
+    color: #15803d;
+    line-height: 1;
+}
+
+.stat-card.amber .stat-value {
+    color: #d97706;
+}
+
+.stat-card.red .stat-value {
+    color: #dc2626;
+}
+
+.stat-card.blue .stat-value {
+    color: #2563eb;
+}
+
+.stat-card.purple .stat-value {
+    color: #7c3aed;
+}
+
+.stat-card .stat-sub {
+    font-size: 11px;
+    color: #999;
+    margin-top: 4px;
+}
+
+.stat-card .stat-sub.up {
+    color: #16a34a;
+}
+
+.stat-card .stat-sub.down {
+    color: #dc2626;
+}
+
+/* ============================================================
+   REDESIGN ELEGAN — ADMIN PANEL
+   Semua rule di sini di-scope ke .admin-panel (class di <body>
+   layouts/admin.blade.php) supaya TIDAK mempengaruhi tampilan
+   portal guru, madrasah, atau halaman publik yang pakai file
+   CSS yang sama.
+   ============================================================ */
+
+/* 1) Kedalaman pada card putih standar (dipakai di hampir semua
+      halaman admin: stat card, filter box, tabel, dsb) */
+.admin-panel .bg-white.rounded-xl.border.border-zinc-100 {
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.03), 0 1px 1px rgba(16, 24, 40, 0.02);
+    transition: box-shadow .18s ease, transform .18s ease;
+}
+
+/* Card yang memang link/clickable (sudah pakai utility hover:-translate-y-0.5)
+   dikasih shadow lebih terangkat saat hover */
+.admin-panel a.bg-white.rounded-xl.border.border-zinc-100:hover {
+    box-shadow: 0 10px 24px -6px rgba(16, 24, 40, 0.10), 0 2px 6px rgba(16, 24, 40, 0.04);
+}
+
+/* 2) Badge lingkaran ikon berwarna (stat card, dashboard) dikasih
+      inset ring tipis biar terlihat lebih "berlapis", bukan flat */
+.admin-panel .rounded-full[style*="background"] {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.035);
+}
+
+/* 3) Sidebar — aksen kiri + gradient halus untuk menu aktif */
+.admin-panel .nav-item {
+    position: relative;
+}
+
+.admin-panel .nav-item.active {
+    background: linear-gradient(90deg, rgba(34, 197, 94, 0.16), rgba(34, 197, 94, 0.02) 85%);
+}
+
+.admin-panel .nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: -3px;
+    top: 50%;
+    width: 3px;
+    height: 60%;
+    transform: translateY(-50%);
+    border-radius: 0 3px 3px 0;
+    background: linear-gradient(180deg, #4ade80, #16a34a);
+}
+
+/* 4) Tombol — sedikit micro-interaction saat ditekan */
+.admin-panel .btn-icon:active,
+.admin-panel .btn-xs:active,
+.admin-panel button:active {
+    transform: scale(0.95);
+}
+
+/* 5) Badge status — border tipis biar lebih tegas & rapi */
+.admin-panel .badge {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.045);
+}
+
+/* 6) Tipografi judul halaman — sedikit letter-spacing biar terasa "designed" */
+.admin-panel h1 {
+    letter-spacing: 0.01em;
+}
+
+/* 7) Angka besar di stat card dibuat sedikit lebih tegas */
+.admin-panel .text-3xl.font-bold {
+    letter-spacing: -0.01em;
+}
+
+/* 8) Top loading bar — pengganti skeleton loading untuk halaman
+      yang di-render server (Blade), bukan SPA/fetch AJAX */
+#admin-loadbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2.5px;
+    width: 0%;
+    opacity: 0;
+    z-index: 9999;
+    background: linear-gradient(90deg, #4ade80, #16a34a);
+    box-shadow: 0 0 8px rgba(22, 163, 74, 0.5);
+}
+
+/* 9) Empty state — animasi masuk halus + ikon sedikit lebih lembut */
+.admin-panel td.py-14.text-center {
+    animation: admin-empty-fade .35s ease;
+}
+
+.admin-panel td.py-14.text-center svg {
+    opacity: .75;
+}
+
+@keyframes admin-empty-fade {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================
+   DARK MODE — ADMIN PANEL
+   Aktif kalau <html> punya class "dark" (di-toggle lewat tombol
+   di topbar, disimpan di localStorage). Semua rule di-scope ke
+   "html.dark .admin-panel" supaya TIDAK mempengaruhi portal guru,
+   madrasah, atau halaman publik.
+   ============================================================ */
+
+/* Ikon toggle: tampilkan sesuai mode aktif */
+html.dark .theme-icon-sun {
+    display: inline !important;
+}
+
+html.dark .theme-icon-moon {
+    display: none !important;
+}
+
+/* Latar halaman & topbar */
+html.dark .admin-panel {
+    background: #0d0d0f;
+    color: #e4e4e7;
+}
+
+html.dark .admin-panel .admin-topbar {
+    background: linear-gradient(180deg, #17171a, #141416) !important;
+    border-bottom: 1px solid #27272a !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Netral: card, border, teks — mengikuti skala Tailwind zinc/gray */
+html.dark .admin-panel .bg-white { background-color: #18181b !important; }
+html.dark .admin-panel .bg-zinc-50,
+html.dark .admin-panel .bg-gray-50 { background-color: #1c1c1f !important; }
+html.dark .admin-panel .bg-zinc-100,
+html.dark .admin-panel .bg-gray-100 { background-color: #26262a !important; }
+html.dark .admin-panel .bg-zinc-200,
+html.dark .admin-panel .bg-gray-200 { background-color: #303035 !important; }
+html.dark .admin-panel .bg-zinc-300 { background-color: #3a3a40 !important; }
+html.dark .admin-panel .bg-zinc-700 { background-color: #52525b !important; }
+html.dark .admin-panel .bg-zinc-800 { background-color: #46464e !important; }
+html.dark .admin-panel .bg-zinc-900 { background-color: #3a3a42 !important; }
+
+html.dark .admin-panel .border-zinc-100,
+html.dark .admin-panel .border-zinc-200,
+html.dark .admin-panel .border-zinc-300 { border-color: #2a2a2e !important; }
+html.dark .admin-panel .border-zinc-400,
+html.dark .admin-panel .border-zinc-500 { border-color: #3f3f46 !important; }
+
+html.dark .admin-panel .text-zinc-900,
+html.dark .admin-panel .text-gray-900 { color: #f4f4f5 !important; }
+html.dark .admin-panel .text-zinc-800,
+html.dark .admin-panel .text-gray-800 { color: #e4e4e7 !important; }
+html.dark .admin-panel .text-zinc-700,
+html.dark .admin-panel .text-gray-700 { color: #d4d4d8 !important; }
+html.dark .admin-panel .text-zinc-600 { color: #b0b0b8 !important; }
+html.dark .admin-panel .text-zinc-500,
+html.dark .admin-panel .text-gray-500 { color: #9a9aa2 !important; }
+html.dark .admin-panel .text-zinc-400,
+html.dark .admin-panel .text-gray-400 { color: #7c7c86 !important; }
+html.dark .admin-panel .text-zinc-300,
+html.dark .admin-panel .text-gray-300 { color: #6c6c75 !important; }
+html.dark .admin-panel .text-zinc-200 { color: #52525b !important; }
+
+/* Input, select, textarea */
+html.dark .admin-panel input,
+html.dark .admin-panel select,
+html.dark .admin-panel textarea {
+    background-color: #1c1c1f !important;
+    border-color: #303035 !important;
+    color: #e4e4e7 !important;
+}
+
+html.dark .admin-panel input::placeholder,
+html.dark .admin-panel textarea::placeholder {
+    color: #6c6c75 !important;
+}
+
+/* Badge lingkaran/ikon berwarna pastel — digelapkan otomatis via filter,
+   jadi tidak perlu ganti tiap file walau warnanya inline style */
+html.dark .admin-panel .rounded-full[style*="background"] {
+    filter: brightness(0.42) saturate(1.35);
+}
+
+/* Latar tint warna semantik (alert/badge bg-*-50 / bg-*-100) —
+   digelapkan otomatis mengikuti warna teksnya sendiri */
+html.dark .admin-panel [class*="bg-green-50"],
+html.dark .admin-panel [class*="bg-green-100"],
+html.dark .admin-panel [class*="bg-red-50"],
+html.dark .admin-panel [class*="bg-red-100"],
+html.dark .admin-panel [class*="bg-blue-50"],
+html.dark .admin-panel [class*="bg-blue-100"],
+html.dark .admin-panel [class*="bg-amber-50"],
+html.dark .admin-panel [class*="bg-amber-100"],
+html.dark .admin-panel [class*="bg-yellow-50"],
+html.dark .admin-panel [class*="bg-yellow-100"],
+html.dark .admin-panel [class*="bg-purple-50"],
+html.dark .admin-panel [class*="bg-purple-100"] {
+    background-color: color-mix(in srgb, currentColor 16%, #0d0d0f 84%) !important;
+}
+
+/* Teks warna semantik yang tadinya gelap (untuk background terang)
+   dinaikkan kecerahannya biar kontras di background gelap */
+html.dark .admin-panel .text-green-700,
+html.dark .admin-panel .text-green-800 { color: #86efac !important; }
+html.dark .admin-panel .text-green-600 { color: #4ade80 !important; }
+html.dark .admin-panel .text-blue-700,
+html.dark .admin-panel .text-blue-800 { color: #93c5fd !important; }
+html.dark .admin-panel .text-blue-600 { color: #60a5fa !important; }
+html.dark .admin-panel .text-red-700,
+html.dark .admin-panel .text-red-800 { color: #fca5a5 !important; }
+html.dark .admin-panel .text-red-600 { color: #f87171 !important; }
+html.dark .admin-panel .text-amber-700,
+html.dark .admin-panel .text-amber-800 { color: #fcd34d !important; }
+html.dark .admin-panel .text-amber-600 { color: #fbbf24 !important; }
+html.dark .admin-panel .text-purple-700,
+html.dark .admin-panel .text-purple-800 { color: #c4b5fd !important; }
+
+/* Border warna semantik (border-*-100/200/300) */
+html.dark .admin-panel [class*="border-green-"] { border-color: rgba(74, 222, 128, .3) !important; }
+html.dark .admin-panel [class*="border-red-"] { border-color: rgba(248, 113, 113, .3) !important; }
+html.dark .admin-panel [class*="border-blue-"] { border-color: rgba(96, 165, 250, .3) !important; }
+html.dark .admin-panel [class*="border-amber-"] { border-color: rgba(251, 191, 36, .3) !important; }
+html.dark .admin-panel [class*="border-purple-"] { border-color: rgba(196, 181, 253, .3) !important; }
+
+/* btn-icon & badge kustom (didefinisikan di atas dengan warna fix) */
+html.dark .admin-panel .btn-icon {
+    border-color: #303035 !important;
+    color: #8b8b93 !important;
+}
+
+html.dark .admin-panel .badge-green { background: rgba(34, 197, 94, .16) !important; color: #4ade80 !important; }
+html.dark .admin-panel .badge-yellow { background: rgba(234, 179, 8, .16) !important; color: #fbbf24 !important; }
+html.dark .admin-panel .badge-red { background: rgba(239, 68, 68, .16) !important; color: #f87171 !important; }
+html.dark .admin-panel .badge-blue { background: rgba(59, 130, 246, .16) !important; color: #60a5fa !important; }
+html.dark .admin-panel .badge-gray { background: rgba(161, 161, 170, .16) !important; color: #a1a1aa !important; }
+html.dark .admin-panel .badge-purple { background: rgba(168, 85, 247, .16) !important; color: #c4b5fd !important; }
+
+/* Shadow card di dark mode dibikin lebih pekat, bukan abu-abu transparan */
+html.dark .admin-panel .bg-white.rounded-xl.border.border-zinc-100 {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25) !important;
+}
+
+html.dark .admin-panel a.bg-white.rounded-xl.border.border-zinc-100:hover {
+    box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Tabel */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.data-table th {
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    color: #999;
+    border-bottom: 1px solid #ebebeb;
+    background: #fafafa;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.data-table td {
+    padding: 12px 14px;
+    color: #333;
+    border-bottom: 1px solid #f2f2f2;
+    height: 48px;
+    box-sizing: border-box;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tr:hover td {
+    background: #fafafa;
+}
+
+/* Alias redesign */
+.tbl-row {
+    transition: background .1s;
+}
+
+.tbl-row:hover {
+    background: #f9f9f9;
+}
+
+.tbl-row td {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.tbl-head th {
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: #a1a1aa;
+    padding: 8px 16px;
+    background: #fafafa;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.filter-input {
+    border: 1px solid #e4e4e7;
+    border-radius: 7px;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #18181b;
+    background: #fff;
+    outline: none;
+    transition: border .15s;
+}
+
+.filter-input:focus {
+    border-color: #a1a1aa;
+}
+
+.filter-input::placeholder {
+    color: #c4c4c7;
+}
+
+/* Flash animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.flash-enter {
+    animation: slideDown .2s ease both;
+}
+
+/* Fade in */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.fade-in {
+    animation: fadeUp .22s ease both;
+}
+
+/* ── PUBLIK ──────────────────────────────────────────────────── */
+
+.hex-pattern {
+    background-color: #166534;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 1.2px, transparent 1.2px);
+    background-size: 28px 28px;
+    position: relative;
+}
+
+.hex-pattern::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 55% 60% at 70% 40%, rgba(34, 197, 94, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 90% 80%, rgba(251, 191, 36, 0.10) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 45% at 10% 20%, rgba(5, 46, 22, 0.45) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hex-pattern::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(-55deg,
+            transparent, transparent 40px,
+            rgba(255, 255, 255, 0.018) 40px, rgba(255, 255, 255, 0.018) 41px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.navbar-scrolled {
+    background: rgba(20, 83, 45, 0.97) !important;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.nav-active {
+    background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.hero-overlay {
+    background: linear-gradient(135deg,
+            rgba(5, 46, 22, 0.85) 0%,
+            rgba(22, 101, 52, 0.7) 50%,
+            rgba(20, 83, 45, 0.85) 100%);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+.float-anim {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulseRing {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+.pulse-ring::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 9999px;
+    background: #fbbf24;
+    animation: pulseRing 1.8s ease-out infinite;
+}
+
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-item {
+    animation: countUp 0.5s ease both;
+}
+
+.doc-card {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.doc-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(22, 101, 52, 0.15);
+}
+
+/* Body fade — hilangkan persepsi flash antar halaman */
+body {
+    animation: bodyFadeIn .18s ease both;
+}
+
+@keyframes bodyFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(3px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
